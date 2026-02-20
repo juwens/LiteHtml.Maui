@@ -30,8 +30,6 @@ endif()
 
 
 # Add source to this project's executable.
-
-
 add_library (litehtml-maui ${LIB_TYPE} "src/litehtml-maui.cpp" "src/litehtml-maui.h" "src/litehtml-maui-container.h" "src/litehtml-maui-container.cpp")
 
 set_target_properties(litehtml-maui PROPERTIES
@@ -39,6 +37,9 @@ set_target_properties(litehtml-maui PROPERTIES
     C_STANDARD 99
     PUBLIC_HEADER "src/litehtml-maui.h" 
 )
+
+# Android 16kb page size
+target_link_options(litehtml-maui PRIVATE "-Wl,-z,max-page-size=16384")
 
 target_link_libraries(litehtml-maui litehtml)
 
